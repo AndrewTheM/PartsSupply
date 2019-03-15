@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Запчасти</title>
+    <link rel="stylesheet" type="text/css" href="\css\formStyle.css"/>
 </head>
 <body>
 <fieldset>
@@ -19,7 +20,7 @@
         <br><@spring.formInput "partForm.price" "" "float"/> <br><br>
         Заметка:
         <br><@spring.formInput "partForm.annotation" "" "text"/> <br><br>
-        <input type="submit" value="Подтвердить"/>
+        <input class="button" type="submit" value="Подтвердить"/>
     </form>
 </fieldset>
 <br>

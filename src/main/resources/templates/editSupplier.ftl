@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Поставщики</title>
+    <link rel="stylesheet" type="text/css" href="\css\formStyle.css"/>
 </head>
 <body>
 <fieldset>
@@ -17,7 +18,7 @@
         <br><@spring.formInput "supplierForm.address" "" "text"/> <br><br>
         Телефон:
         <br><@spring.formInput "supplierForm.phone" "" "text"/> <br><br>
-        <input type="submit" value="Подтвердить"/>
+        <input class="button" type="submit" value="Подтвердить"/>
     </form>
 </fieldset>
 <br>

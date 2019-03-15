@@ -4,10 +4,11 @@
     <head>
         <meta charset="UTF-8">
         <title>Поставки</title>
+        <link rel="stylesheet" type="text/css" href="\css\formStyle.css"/>
     </head>
     <body>
         <fieldset>
-            <legend>Добавление новой запчасти</legend>
+            <legend>Добавление новой записи о поставке</legend>
             <form name="supply" action="" method="POST">
                 Поставщик:
                 <br><@spring.formSingleSelect "supplyForm.supplier" supplierMavs ""/> <br><br>
@@ -17,7 +18,7 @@
                 <br><@spring.formInput "supplyForm.amount" "" "number"/> <br><br>
                 Дата:
                 <br><@spring.formInput "supplyForm.date" "" "date"/> <br><br>
-                <input type="submit" value="Добавить"/>
+                <input class="button" type="submit" value="Добавить"/>
             </form>
         </fieldset>
         <br>

@@ -8,7 +8,10 @@
     </head>
     <body>
         <div align="center">
-            <table border="1" cellspacing="0" cellpadding="5" bgcolor="#fff8dc">
+            <a class="button" href="/api/part/create">Добавить запчасть</a>
+            <a class="button" href="/index">На главную</a>
+            <br><br>
+            <table border="1" cellspacing="0" cellpadding="5">
                 <tr>
                     <th>ID</th>
                     <th>Код запчасти</th>
@@ -16,8 +19,7 @@
                     <th>Тип/артикул</th>
                     <th>Цена</th>
                     <th>Заметка</th>
-                    <th>Удаление</th>
-                    <th>Изменение</th>
+                    <th colspan="2">Редактирование</th>
                 </tr>
                 <#list parts as part>
                     <tr align="center">
@@ -27,15 +29,11 @@
                         <td>${part.type}</td>
                         <td>${part.price}</td>
                         <td>${part.annotation}</td>
-                        <td><a class="cross" href="/api/part/delete/${part.id}">Х</a></td>
-                        <td><a class="cross" href="/api/part/edit/${part.id}">Х</a></td>
+                        <td><a class="cross" href="/api/part/delete/${part.id}">Удалить</a></td>
+                        <td><a class="cross" href="/api/part/edit/${part.id}">Изменить</a></td>
                     </tr>
                 </#list>
             </table>
-            <br><br>
-            <a href="/api/part/create">Добавить запчасть</a>
-            <br>
-            <a href="/index">На главную</a>
         </div>
     </body>
 </html>

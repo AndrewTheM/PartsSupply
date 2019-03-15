@@ -1,7 +1,11 @@
 package mak.parts.partssupply.service.supply.impls;
 
+import mak.parts.partssupply.model.Part;
+import mak.parts.partssupply.model.Supplier;
 import mak.parts.partssupply.model.Supply;
 import mak.parts.partssupply.repository.SupplyRepository;
+import mak.parts.partssupply.service.part.impls.PartServiceMongoImpl;
+import mak.parts.partssupply.service.supplier.impls.SupplierServiceMongoImpl;
 import mak.parts.partssupply.service.supply.interfaces.ISupplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +21,19 @@ public class SupplyServiceMongoImpl implements ISupplyService {
     @Autowired
     private SupplyRepository repository;
 
+    @Autowired
+    private SupplierServiceMongoImpl supplierService;
+
+    @Autowired
+    private PartServiceMongoImpl partService;
+
     @PostConstruct
     private void init() {
+        Supplier supplier = supplierService.getAt(0);
+        Part part = partService.getAt(0);
         List<Supply> supplies = new ArrayList<>(
                 Arrays.asList(
-                    //new Supply("25567", "Bolt", "Instruments", 25.75, "Obichniy bolt")
+                    new Supply(supplier, part, 25, "2019-03-05")
                 )
         );
         repository.saveAll(supplies);

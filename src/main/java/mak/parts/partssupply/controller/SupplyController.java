@@ -56,9 +56,12 @@ public class SupplyController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createSupply(Model model, @ModelAttribute("supplyForm") SupplyForm supplyForm) {
-        Supplier supplier = supplierService.get(supplyForm.getSupplier());
-        Part part = partService.get(supplyForm.getPart());
-        supplyService.create(new Supply(supplier, part, supplyForm.getAmount(), supplyForm.getDate()));
+        if (!supplyForm.getSupplier().isEmpty() && !supplyForm.getPart().isEmpty()
+                && supplyForm.getAmount() > 0 && !supplyForm.getDate().isEmpty()) {
+            Supplier supplier = supplierService.get(supplyForm.getSupplier());
+            Part part = partService.get(supplyForm.getPart());
+            supplyService.create(new Supply(supplier, part, supplyForm.getAmount(), supplyForm.getDate()));
+        }
         model.addAttribute("supplies", supplyService.getAll());
         return "supplyList";
     }
@@ -79,14 +82,17 @@ public class SupplyController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editSupply(Model model, @PathVariable("id") String id,
                                @ModelAttribute("supplyForm") SupplyForm supplyForm) {
-        Supply supply = supplyService.get(id);
-        Supplier supplier = supplierService.get(supplyForm.getSupplier());
-        Part part = partService.get(supplyForm.getPart());
-        supply.setSupplier(supplier);
-        supply.setPart(part);
-        supply.setAmount(supplyForm.getAmount());
-        supply.setDate(supplyForm.getDate());
-        supplyService.update(supply);
+        if (!supplyForm.getSupplier().isEmpty() && !supplyForm.getPart().isEmpty()
+                && supplyForm.getAmount() > 0 && !supplyForm.getDate().isEmpty()) {
+            Supply supply = supplyService.get(id);
+            Supplier supplier = supplierService.get(supplyForm.getSupplier());
+            Part part = partService.get(supplyForm.getPart());
+            supply.setSupplier(supplier);
+            supply.setPart(part);
+            supply.setAmount(supplyForm.getAmount());
+            supply.setDate(supplyForm.getDate());
+            supplyService.update(supply);
+        }
         model.addAttribute("supplies", supplyService.getAll());
         return "supplyList";
     }

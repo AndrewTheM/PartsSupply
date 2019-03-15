@@ -4,10 +4,44 @@ body {
 
 a {
     text-decoration: none;
+    font-weight: bold;
 }
 
 a.cross {
-    font-weight: bold;
-    color: #fff669;
-    display: block;
+    color: black;
+}
+
+a.cross:hover {
+    color: red;
+}
+
+a.button {
+    display: inline-block;
+    color: #171c8b;
+    background: #fff8dc;
+    border: 3px #171c8b solid;
+    margin: 10px;
+    padding: 10px;
+    width: 210px;
+    font-size: 13pt;
+}
+
+a.button:hover {
+    color: #fff8dc;
+    background: #171c8b;
+}
+
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+    background: #fff8dc;
+}
+
+tr {
+    font-size: 13pt;
+}
+
+td {
+    font-size: 12pt;
+    max-width: 250px;
 }

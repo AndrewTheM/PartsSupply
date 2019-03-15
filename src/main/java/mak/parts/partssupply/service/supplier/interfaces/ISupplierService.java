@@ -10,4 +10,6 @@ public interface ISupplierService {
     Supplier update(Supplier supplier);
     void delete(String id);
     List<Supplier> getAll();
+
+    Supplier getAt(int index);
 }

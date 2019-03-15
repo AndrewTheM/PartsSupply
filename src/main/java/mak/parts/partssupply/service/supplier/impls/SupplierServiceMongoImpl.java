@@ -16,7 +16,7 @@ public class SupplierServiceMongoImpl implements ISupplierService {
 
     @Autowired
     private SupplierRepository repository;
-    /*
+
     @PostConstruct
     private void init() {
         List<Supplier> suppliers = new ArrayList<>(
@@ -26,7 +26,7 @@ public class SupplierServiceMongoImpl implements ISupplierService {
         );
         repository.saveAll(suppliers);
     }
-    */
+
     @Override
     public Supplier create(Supplier supplier) {
         return repository.save(supplier);
@@ -50,5 +50,10 @@ public class SupplierServiceMongoImpl implements ISupplierService {
     @Override
     public List<Supplier> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public Supplier getAt(int index) {
+        return this.getAll().get(index);
     }
 }

@@ -12,9 +12,4 @@ public class MainController {
     public String index(Model model) {
         return "index";
     }
-
-    /*@RequestMapping(value = "/api", method = RequestMethod.GET)
-    public String api(Model model) {
-        return "api";
-    }*/
 }

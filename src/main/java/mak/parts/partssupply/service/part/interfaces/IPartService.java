@@ -10,4 +10,6 @@ public interface IPartService {
     Part update(Part part);
     void delete(String id);
     List<Part> getAll();
+
+    Part getAt(int index);
 }

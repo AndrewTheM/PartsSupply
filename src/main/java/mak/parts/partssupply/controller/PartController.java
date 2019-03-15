@@ -33,8 +33,10 @@ public class PartController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createPart(Model model, @ModelAttribute("partForm") PartForm partForm) {
-        partService.create(new Part(partForm.getCode(), partForm.getName(), partForm.getType(),
-                                    partForm.getPrice(), partForm.getAnnotation()));
+        if (!partForm.getCode().isEmpty() && !partForm.getName().isEmpty()
+                && !partForm.getType().isEmpty() && partForm.getPrice() > 0)
+            partService.create(new Part(partForm.getCode(), partForm.getName(), partForm.getType(),
+                                        partForm.getPrice(), partForm.getAnnotation()));
         model.addAttribute("parts", partService.getAll());
         return "partList";
     }
@@ -55,13 +57,16 @@ public class PartController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editPart(Model model, @PathVariable("id") String id,
                            @ModelAttribute("partForm") PartForm partForm) {
-        Part part = partService.get(id);
-        part.setCode(partForm.getCode());
-        part.setName(partForm.getName());
-        part.setType(partForm.getType());
-        part.setPrice(partForm.getPrice());
-        part.setAnnotation(partForm.getAnnotation());
-        partService.update(part);
+        if (!partForm.getCode().isEmpty() && !partForm.getName().isEmpty()
+                && !partForm.getType().isEmpty() && partForm.getPrice() > 0) {
+            Part part = partService.get(id);
+            part.setCode(partForm.getCode());
+            part.setName(partForm.getName());
+            part.setType(partForm.getType());
+            part.setPrice(partForm.getPrice());
+            part.setAnnotation(partForm.getAnnotation());
+            partService.update(part);
+        }
         model.addAttribute("parts", partService.getAll());
         return "partList";
     }

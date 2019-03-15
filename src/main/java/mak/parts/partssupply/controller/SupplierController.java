@@ -33,8 +33,10 @@ public class SupplierController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createSupplier(Model model, @ModelAttribute("supplierForm") SupplierForm supplierForm) {
-        supplierService.create(new Supplier(supplierForm.getCode(), supplierForm.getName(),
-                                supplierForm.getAddress(), supplierForm.getPhone()));
+        if (!supplierForm.getCode().isEmpty() && !supplierForm.getName().isEmpty()
+                && !supplierForm.getAddress().isEmpty() && !supplierForm.getPhone().isEmpty())
+            supplierService.create(new Supplier(supplierForm.getCode(), supplierForm.getName(),
+                                    supplierForm.getAddress(), supplierForm.getPhone()));
         model.addAttribute("suppliers", supplierService.getAll());
         return "supplierList";
     }
@@ -54,12 +56,15 @@ public class SupplierController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editSupplier(Model model, @PathVariable("id") String id,
                            @ModelAttribute("supplierForm") SupplierForm supplierForm) {
-        Supplier supplier = supplierService.get(id);
-        supplier.setCode(supplierForm.getCode());
-        supplier.setName(supplierForm.getName());
-        supplier.setAddress(supplierForm.getAddress());
-        supplier.setPhone(supplierForm.getPhone());
-        supplierService.update(supplier);
+        if (!supplierForm.getCode().isEmpty() && !supplierForm.getName().isEmpty()
+                && !supplierForm.getAddress().isEmpty() && !supplierForm.getPhone().isEmpty()) {
+            Supplier supplier = supplierService.get(id);
+            supplier.setCode(supplierForm.getCode());
+            supplier.setName(supplierForm.getName());
+            supplier.setAddress(supplierForm.getAddress());
+            supplier.setPhone(supplierForm.getPhone());
+            supplierService.update(supplier);
+        }
         model.addAttribute("suppliers", supplierService.getAll());
         return "supplierList";
     }

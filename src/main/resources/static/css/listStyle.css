@@ -1,0 +1,13 @@
+body {
+    background: #ffdf95;
+}
+
+a {
+    text-decoration: none;
+}
+
+a.cross {
+    font-weight: bold;
+    color: #fff669;
+    display: block;
+}

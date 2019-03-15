@@ -26,22 +26,27 @@ public class PartServiceMongoImpl implements IPartService {
     }
     */
 
+    @Override
     public Part create(Part part) {
         return repository.save(part);
     }
 
+    @Override
     public Part get(String id) {
         return repository.findById(id).orElse(null);
     }
 
+    @Override
     public Part update(Part part) {
         return repository.save(part);
     }
 
+    @Override
     public void delete(String id) {
         repository.deleteById(id);
     }
 
+    @Override
     public List<Part> getAll() {
         return repository.findAll();
     }

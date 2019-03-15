@@ -4,36 +4,38 @@
     <head>
         <meta charset="UTF-8">
         <title>Запчасти</title>
-        <link rel="stylesheet" type="text/css" href="listStyle.css">
+        <link rel="stylesheet" type="text/css" href="\css\listStyle.css"/>
     </head>
     <body>
-        <table border="1" bgcolor="#fff8dc" align="center">
-            <tr>
-                <th>ID</th>
-                <th>Код запчасти</th>
-                <th>Название</th>
-                <th>Тип/артикул</th>
-                <th>Цена</th>
-                <th>Заметка</th>
-                <th>Удаление</th>
-                <th>Изменение</th>
-            </tr>
-            <#list parts as part>
+        <div align="center">
+            <table border="1" cellspacing="0" cellpadding="5" bgcolor="#fff8dc">
                 <tr>
-                    <td>${part.id}</td>
-                    <td>${part.code}</td>
-                    <td>${part.name}</td>
-                    <td>${part.type}</td>
-                    <td>${part.price}</td>
-                    <td>${part.annotation}</td>
-                    <td align="center"><a href="/api/part/delete/${part.id}">Х</a></td>
-                    <td align="center"><a href="/api/part/edit/${part.id}">Х</a></td>
+                    <th>ID</th>
+                    <th>Код запчасти</th>
+                    <th>Название</th>
+                    <th>Тип/артикул</th>
+                    <th>Цена</th>
+                    <th>Заметка</th>
+                    <th>Удаление</th>
+                    <th>Изменение</th>
                 </tr>
-            </#list>
-        </table>
-        <br><br>
-        <a href="/api/part/create">Добавить запчасть</a>
-        <br>
-        <a href="/index">На главную</a>
+                <#list parts as part>
+                    <tr align="center">
+                        <td>${part.id}</td>
+                        <td>${part.code}</td>
+                        <td>${part.name}</td>
+                        <td>${part.type}</td>
+                        <td>${part.price}</td>
+                        <td>${part.annotation}</td>
+                        <td><a class="cross" href="/api/part/delete/${part.id}">Х</a></td>
+                        <td><a class="cross" href="/api/part/edit/${part.id}">Х</a></td>
+                    </tr>
+                </#list>
+            </table>
+            <br><br>
+            <a href="/api/part/create">Добавить запчасть</a>
+            <br>
+            <a href="/index">На главную</a>
+        </div>
     </body>
 </html>

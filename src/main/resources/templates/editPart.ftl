@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Запчасти</title>
-    <link rel="stylesheet" type="text/css" href="indexStyle.css">
 </head>
 <body>
 <fieldset>

@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Поставщики</title>
-    <link rel="stylesheet" type="text/css" href="сss/indexStyle.css">
 </head>
 <body>
 <fieldset>

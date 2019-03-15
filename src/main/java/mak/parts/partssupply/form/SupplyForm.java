@@ -1,12 +1,9 @@
 package mak.parts.partssupply.form;
 
-import mak.parts.partssupply.model.Part;
-import mak.parts.partssupply.model.Supplier;
-
 public class SupplyForm {
     private String id;
-    private Supplier supplier;
-    private Part part;
+    private String supplier;
+    private String part;
     private int amount;
     private String date;
 
@@ -18,19 +15,19 @@ public class SupplyForm {
         this.id = id;
     }
 
-    public Supplier getSupplier() {
+    public String getSupplier() {
         return supplier;
     }
 
-    public void setSupplier(Supplier supplier) {
+    public void setSupplier(String supplier) {
         this.supplier = supplier;
     }
 
-    public Part getPart() {
+    public String getPart() {
         return part;
     }
 
-    public void setPart(Part part) {
+    public void setPart(String part) {
         this.part = part;
     }
 

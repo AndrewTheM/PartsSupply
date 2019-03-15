@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Продажи запчастей</title>
-        <link rel="stylesheet" type="text/css" href="css/indexStyle.css">
+        <link rel="stylesheet" type="text/css" href="\css\indexStyle.css"/>
     </head>
         <body>
             <h1>Фирма по продаже запчастей</h1>

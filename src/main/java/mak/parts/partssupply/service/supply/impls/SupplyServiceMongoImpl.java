@@ -27,22 +27,27 @@ public class SupplyServiceMongoImpl implements ISupplyService {
         repository.saveAll(supplies);
     }
 
+    @Override
     public Supply create(Supply supply) {
         return repository.save(supply);
     }
 
+    @Override
     public Supply get(String id) {
         return repository.findById(id).orElse(null);
     }
 
+    @Override
     public Supply update(Supply supply) {
         return repository.save(supply);
     }
 
+    @Override
     public void delete(String id) {
         repository.deleteById(id);
     }
 
+    @Override
     public List<Supply> getAll() {
         return repository.findAll();
     }

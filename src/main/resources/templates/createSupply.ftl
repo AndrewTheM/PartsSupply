@@ -4,16 +4,15 @@
     <head>
         <meta charset="UTF-8">
         <title>Поставки</title>
-        <link rel="stylesheet" type="text/css" href="css/indexStyle.css">
     </head>
     <body>
         <fieldset>
             <legend>Добавление новой запчасти</legend>
             <form name="supply" action="" method="POST">
                 Поставщик:
-                <br><@spring.formInput "supplyForm.supplier.id" "" "text"/> <br><br>
+                <br><@spring.formSingleSelect "supplyForm.supplier" supplierMavs ""/> <br><br>
                 Деталь:
-                <br><@spring.formInput "supplyForm.part.id" "" "text"/> <br><br>
+                <br><@spring.formSingleSelect "supplyForm.part" partMavs ""/> <br><br>
                 Количество:
                 <br><@spring.formInput "supplyForm.amount" "" "number"/> <br><br>
                 Дата:

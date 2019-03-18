@@ -1,0 +1,53 @@
+body {
+    background: #ffdf95;
+    text-align: center;
+    font-size: 14pt;
+}
+
+fieldset, a {
+    display: inline-block;
+    background: #fff8dc;
+    border: 3px #171c8b solid;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 16pt;
+    color: #171c8b;
+    background: #fff8dc;
+    border: 2px #171c8b solid;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+input, select {
+    font-size: 13pt;
+    border-radius: 10px;
+    margin: 5px;
+    text-align-last: center;
+    width: 250px;
+}
+
+input.button {
+    border-radius: 0;
+    margin-bottom: 10px;
+    width: 150px;
+}
+
+a {
+    color: #171c8b;
+    margin: 20px;
+    padding: 10px;
+    width: 100px;
+    border-radius: 0;
+    font-size: 13pt;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #ffefe1;
+    background: #171c8b;
+}

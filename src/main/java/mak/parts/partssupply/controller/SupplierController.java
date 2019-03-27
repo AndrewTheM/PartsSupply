@@ -3,10 +3,7 @@ package mak.parts.partssupply.controller;
 import mak.parts.partssupply.model.Supplier;
 import mak.parts.partssupply.service.supplier.impls.SupplierServiceMongoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,11 +26,21 @@ public class SupplierController {
         return supplierService.create(new Supplier(code, name, address, phone));
     }
 
+    @PostMapping("/create")
+    public Supplier createSupplierPost(@RequestBody Supplier supplier) {
+        return supplierService.create(supplier);
+    }
+
     @RequestMapping("/edit/{id}/{code}/{name}/{address}/{phone}")
     public Supplier editSupplier(@PathVariable("id") String id, @PathVariable("code") String code,
                                  @PathVariable("name") String name, @PathVariable("address") String address,
                                  @PathVariable("phone") String phone) {
         return supplierService.update(new Supplier(id, code, name, address, phone));
+    }
+
+    @PostMapping("/edit")
+    public Supplier editSupplierPost(@RequestBody Supplier supplier) {
+        return supplierService.create(supplier);
     }
 
     @RequestMapping("/delete/{id}")

@@ -7,10 +7,7 @@ import mak.parts.partssupply.service.part.impls.PartServiceMongoImpl;
 import mak.parts.partssupply.service.supplier.impls.SupplierServiceMongoImpl;
 import mak.parts.partssupply.service.supply.impls.SupplyServiceMongoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +38,11 @@ public class SupplyController {
         return supplyService.create(new Supply(supplier, part, amount, date));
     }
 
+    @PostMapping("/create")
+    public Supply createSupplyPost(@RequestBody Supply supply) {
+        return supplyService.create(supply);
+    }
+
     @RequestMapping("/edit/{id}/{supplierId}/{partId}/{amount}/{date}")
     public Supply editSupply(@PathVariable("id") String id, @PathVariable("supplierId") String supplierId,
                              @PathVariable("partId") String partId, @PathVariable("amount") int amount,
@@ -48,6 +50,11 @@ public class SupplyController {
         Supplier supplier = supplierService.get(supplierId);
         Part part = partService.get(partId);
         return supplyService.update(new Supply(id, supplier, part, amount, date));
+    }
+
+    @PostMapping("/edit")
+    public Supply editSupplyPost(@RequestBody Supply supply) {
+        return supplyService.create(supply);
     }
 
     @RequestMapping("/delete/{id}")

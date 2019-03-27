@@ -40,7 +40,7 @@ public class SupplierController {
 
     @PostMapping("/edit")
     public Supplier editSupplierPost(@RequestBody Supplier supplier) {
-        return supplierService.create(supplier);
+        return supplierService.update(supplier);
     }
 
     @RequestMapping("/delete/{id}")

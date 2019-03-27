@@ -30,8 +30,7 @@ public class PartController {
 
     @PostMapping("/create")
     public Part createPartPost(@RequestBody Part part) {
-        partService.create(part);
-        return part;
+        return partService.create(part);
     }
 
     @RequestMapping("/edit/{id}/{code}/{name}/{type}/{price}/{annotation}")
@@ -43,7 +42,6 @@ public class PartController {
 
     @PostMapping("/edit")
     public Part editPartPost(@RequestBody Part part) {
-        partService.create(part);
         return partService.update(part);
     }
 

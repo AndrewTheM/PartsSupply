@@ -1,5 +1,6 @@
 package mak.parts.partssupply.controller;
 
+import mak.parts.partssupply.form.SupplyForm;
 import mak.parts.partssupply.model.Part;
 import mak.parts.partssupply.model.Supplier;
 import mak.parts.partssupply.model.Supply;
@@ -39,7 +40,10 @@ public class SupplyController {
     }
 
     @PostMapping("/create")
-    public Supply createSupplyPost(@RequestBody Supply supply) {
+    public Supply createSupplyPost(@RequestBody SupplyForm supplyForm) {
+        Supplier supplier = supplierService.get(supplyForm.getSupplier());
+        Part part = partService.get(supplyForm.getPart());
+        Supply supply = new Supply(supplier, part, supplyForm.getAmount(), supplyForm.getDate());
         return supplyService.create(supply);
     }
 
@@ -53,8 +57,11 @@ public class SupplyController {
     }
 
     @PostMapping("/edit")
-    public Supply editSupplyPost(@RequestBody Supply supply) {
-        return supplyService.create(supply);
+    public Supply editSupplyPost(@RequestBody SupplyForm supplyForm) {
+        Supplier supplier = supplierService.get(supplyForm.getSupplier());
+        Part part = partService.get(supplyForm.getPart());
+        Supply supply = new Supply(supplier, part, supplyForm.getAmount(), supplyForm.getDate());
+        return supplyService.update(supply);
     }
 
     @RequestMapping("/delete/{id}")

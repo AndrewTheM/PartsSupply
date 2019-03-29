@@ -60,7 +60,7 @@ public class SupplyController {
     public Supply editSupplyPost(@RequestBody SupplyForm supplyForm) {
         Supplier supplier = supplierService.get(supplyForm.getSupplier());
         Part part = partService.get(supplyForm.getPart());
-        Supply supply = new Supply(supplier, part, supplyForm.getAmount(), supplyForm.getDate());
+        Supply supply = new Supply(supplyForm.getId(), supplier, part, supplyForm.getAmount(), supplyForm.getDate());
         return supplyService.update(supply);
     }
 

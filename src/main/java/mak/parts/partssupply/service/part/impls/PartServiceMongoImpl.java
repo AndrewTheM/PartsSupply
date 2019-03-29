@@ -21,10 +21,20 @@ public class PartServiceMongoImpl implements IPartService {
     private void init() {
         List<Part> parts = new ArrayList<>(
                 Arrays.asList(
-                    new Part("25567", "Bolt", "Instruments", 25.75, "Obichniy bolt")
+                    new Part("4524521325", "Поршень", "GF-5462", 30, "Два по цене трёх"),
+                    new Part("3245246533", "Водяной насос", "WE-3533", 22, "-"),
+                    new Part("9068709926", "Радиатор", "SA-4987", 13, "*Это не магнитола"),
+                    new Part("1234178164", "Амортизатор", "JK-1984", 78, "Ароматизатор в подарок"),
+                    new Part("8979646484", "Воздушный фильтр", "ST-1289", 123, "Такой воздушный!"),
+                    new Part("1827278748", "Рессора", "FU-0091", 32, "-"),
+                    new Part("5024712374", "Резонатор", "BJ-4236", 22, "Сделан с любовью в Китае"),
+                    new Part("7124218814", "Компрессор", "SA-6853", 57, "-"),
+                    new Part("9768648457", "Глушитель", "BJ-3012", 80, "Глушит лучше затычек!"),
+                    new Part("4180778939", "Стекло заднее", "CV-0372", 500, "АКЦИЯ! При покупке - стекло переднее со скидкой 50%!")
                 )
         );
-        repository.saveAll(parts);
+        if (repository.findAll().size() == 0 || !repository.findAll().get(0).getCode().equals(parts.get(0).getCode()))
+            repository.saveAll(parts);
     }
 
     @Override

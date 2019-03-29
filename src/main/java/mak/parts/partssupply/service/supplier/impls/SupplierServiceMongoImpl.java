@@ -21,10 +21,15 @@ public class SupplierServiceMongoImpl implements ISupplierService {
     private void init() {
         List<Supplier> suppliers = new ArrayList<>(
                 Arrays.asList(
-                    new Supplier("193", "Detail Inc.", "Ukraine, Kyiv", "+380662537612")
+                        new Supplier("794", "Part Inc.", "Киев, ул. Франка, 7", "+380662537612"),
+                        new Supplier("123", "АвтоМобі", "Львов, ул. Шевченка, 63", "+380993465317"),
+                        new Supplier("586", "Michelin Ukraine", "Киев, ул. Котляревского, 1", "+380503127129"),
+                        new Supplier("069", "Запаска", "Харьков, ул. Шиллера, 15", "+380673264876"),
+                        new Supplier("341", "4Auto", "Черновцы, ул. Главная, 223", "+380952345785")
                 )
         );
-        repository.saveAll(suppliers);
+        if (repository.findAll().size() == 0 || !repository.findAll().get(0).getCode().equals(suppliers.get(0).getCode()))
+            repository.saveAll(suppliers);
     }
 
     @Override

@@ -29,14 +29,22 @@ public class SupplyServiceMongoImpl implements ISupplyService {
 
     @PostConstruct
     private void init() {
-        Supplier supplier = supplierService.getAt(0);
-        Part part = partService.getAt(0);
         List<Supply> supplies = new ArrayList<>(
                 Arrays.asList(
-                    new Supply(supplier, part, 25, "2019-03-05")
+                        new Supply(supplierService.getAt(4), partService.getAt(7), 13, "2019-03-05"),
+                        new Supply(supplierService.getAt(0), partService.getAt(3), 2, "2019-03-28"),
+                        new Supply(supplierService.getAt(1), partService.getAt(9), 1, "2019-02-11"),
+                        new Supply(supplierService.getAt(1), partService.getAt(0), 9, "2018-10-22"),
+                        new Supply(supplierService.getAt(2), partService.getAt(6), 7, "2018-08-01"),
+                        new Supply(supplierService.getAt(3), partService.getAt(2), 67, "2019-01-30"),
+                        new Supply(supplierService.getAt(0), partService.getAt(8), 3, "2019-02-17"),
+                        new Supply(supplierService.getAt(2), partService.getAt(1), 23, "2017-12-26"),
+                        new Supply(supplierService.getAt(4), partService.getAt(4), 8, "2017-09-18"),
+                        new Supply(supplierService.getAt(2), partService.getAt(5), 1, "2018-04-20")
                 )
         );
-        repository.saveAll(supplies);
+        if (repository.findAll().size() == 0 || !repository.findAll().get(0).getDate().equals(supplies.get(0).getDate()))
+            repository.saveAll(supplies);
     }
 
     @Override

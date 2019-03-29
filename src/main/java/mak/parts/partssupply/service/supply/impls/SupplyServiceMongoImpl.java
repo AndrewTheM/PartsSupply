@@ -43,7 +43,7 @@ public class SupplyServiceMongoImpl implements ISupplyService {
                     new Supply(supplierService.getAt(2), partService.getAt(5), 1, "2018-04-20")
                 )
         );
-        if (repository.findAll().size() == 0 || !repository.findAll().get(0).equals(supplies.get(0)))
+        if (repository.findAll().size() == 0 || !repository.findAll().get(0).getDate().equals(supplies.get(0).getDate()))
             repository.saveAll(supplies);
     }
 

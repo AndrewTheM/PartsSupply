@@ -10,6 +10,7 @@ import mak.parts.partssupply.service.supply.impls.SupplyServiceMongoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -67,5 +68,25 @@ public class SupplyController {
     @RequestMapping("/delete/{id}")
     public void deleteSupply(@PathVariable("id") String id) {
         supplyService.delete(id);
+    }
+
+    @RequestMapping("/income")
+    public double getTotalIncome() {
+        return supplyService.getTotalIncome();
+    }
+
+    @RequestMapping("income/{date}")
+    public double getIncomeOfDate(@PathVariable("date") String date) {
+        LocalDate locDate = LocalDate.parse((CharSequence)date);
+        return supplyService.getIncomeOfDate(locDate);
+    }
+
+    @RequestMapping("income/from/{firstDate}/to/{secondDate}")
+    public double getIncomeBetween(@PathVariable("year1") int year1, @PathVariable("month1") int month1,
+                                   @PathVariable("day1") int day1, @PathVariable("year2") int year2,
+                                   @PathVariable("month2") int month2, @PathVariable("day2") int day2) {
+        LocalDate date1 = LocalDate.of(year1, month1, day1);
+        LocalDate date2 = LocalDate.of(year2, month2, day2);
+        return supplyService.getIncomeBetween(date1, date2);
     }
 }

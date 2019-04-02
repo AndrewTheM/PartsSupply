@@ -49,4 +49,17 @@ public class PartController {
     public void deletePart(Model model, @PathVariable("id") String id) {
         partService.delete(id);
     }
+
+    @RequestMapping("/find/{field}/{value}")
+    public List<Part> findParts(@PathVariable("field") String field, @PathVariable("value") String value) {
+        List<Part> result = null;
+        switch (field) {
+            case "code": result = partService.findByCode(value); break;
+            case "name": result = partService.findByName(value); break;
+            case "type": result = partService.findByType(value); break;
+            case "price": result = partService.findByPrice(Double.parseDouble(value)); break;
+            case "annotation": result = partService.findByAnnotation(value); break;
+        }
+        return result;
+    }
 }

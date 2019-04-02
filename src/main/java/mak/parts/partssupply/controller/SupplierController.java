@@ -47,4 +47,16 @@ public class SupplierController {
     public void deleteSupplier(@PathVariable("id") String id) {
         supplierService.delete(id);
     }
+
+    @RequestMapping("/find/{field}/{value}")
+    public List<Supplier> findSuppliers(@PathVariable("field") String field, @PathVariable("value") String value) {
+        List<Supplier> result = null;
+        switch (field) {
+            case "code": result = supplierService.findByCode(value); break;
+            case "name": result = supplierService.findByName(value); break;
+            case "address": result = supplierService.findByAddress(value); break;
+            case "phone": result = supplierService.findByPhone(value); break;
+        }
+        return result;
+    }
 }

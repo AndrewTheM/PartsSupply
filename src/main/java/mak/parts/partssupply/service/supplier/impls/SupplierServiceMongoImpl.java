@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SupplierServiceMongoImpl implements ISupplierService {
@@ -60,5 +61,33 @@ public class SupplierServiceMongoImpl implements ISupplierService {
     @Override
     public Supplier getAt(int index) {
         return this.getAll().get(index);
+    }
+
+    @Override
+    public List<Supplier> findByCode(String code) {
+        return this.getAll().stream()
+                .filter(supplier -> supplier.getCode().contains(code))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Supplier> findByName(String name) {
+        return this.getAll().stream()
+                .filter(supplier -> supplier.getName().contains(name))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Supplier> findByAddress(String address) {
+        return this.getAll().stream()
+                .filter(supplier -> supplier.getAddress().contains(address))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Supplier> findByPhone(String phone) {
+        return this.getAll().stream()
+                .filter(supplier -> supplier.getPhone().contains(phone))
+                .collect(Collectors.toList());
     }
 }

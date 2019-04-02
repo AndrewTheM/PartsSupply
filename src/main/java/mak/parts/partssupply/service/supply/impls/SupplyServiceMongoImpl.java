@@ -1,7 +1,5 @@
 package mak.parts.partssupply.service.supply.impls;
 
-import mak.parts.partssupply.model.Part;
-import mak.parts.partssupply.model.Supplier;
 import mak.parts.partssupply.model.Supply;
 import mak.parts.partssupply.repository.SupplyRepository;
 import mak.parts.partssupply.service.part.impls.PartServiceMongoImpl;
@@ -15,6 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SupplyServiceMongoImpl implements ISupplyService {
@@ -101,5 +100,33 @@ public class SupplyServiceMongoImpl implements ISupplyService {
                 income += sup.getAmount() * sup.getPart().getPrice();
         }
         return income;
+    }
+
+    @Override
+    public List<Supply> findBySupplier(String supplierName) {
+        return this.getAll().stream()
+                .filter(supply -> supply.getSupplier().getName().contains(supplierName))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Supply> findByPart(String partName) {
+        return this.getAll().stream()
+                .filter(supply -> supply.getPart().getName().contains(partName))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Supply> findByAmount(int amount) {
+        return this.getAll().stream()
+                .filter(supply -> supply.getAmount() == amount)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Supply> findByDate(String date) {
+        return this.getAll().stream()
+                .filter(supply -> supply.getDate().contains(date))
+                .collect(Collectors.toList());
     }
 }

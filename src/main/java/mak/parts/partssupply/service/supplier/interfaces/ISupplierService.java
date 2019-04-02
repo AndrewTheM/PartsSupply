@@ -12,4 +12,8 @@ public interface ISupplierService {
     List<Supplier> getAll();
 
     Supplier getAt(int index);
+    List<Supplier> findByCode(String code);
+    List<Supplier> findByName(String name);
+    List<Supplier> findByAddress(String address);
+    List<Supplier> findByPhone(String phone);
 }

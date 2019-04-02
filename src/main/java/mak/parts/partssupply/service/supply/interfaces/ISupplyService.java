@@ -1,6 +1,5 @@
 package mak.parts.partssupply.service.supply.interfaces;
 
-import mak.parts.partssupply.model.Supplier;
 import mak.parts.partssupply.model.Supply;
 
 import java.time.LocalDate;
@@ -16,4 +15,9 @@ public interface ISupplyService {
     double getTotalIncome();
     double getIncomeOfDate(LocalDate date);
     double getIncomeBetween(LocalDate startDate, LocalDate endDate);
+
+    List<Supply> findBySupplier(String supplierName);
+    List<Supply> findByPart(String partName);
+    List<Supply> findByAmount(int amount);
+    List<Supply> findByDate(String date);
 }

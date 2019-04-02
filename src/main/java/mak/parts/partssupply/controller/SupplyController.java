@@ -10,6 +10,7 @@ import mak.parts.partssupply.service.supply.impls.SupplyServiceMongoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -67,5 +68,34 @@ public class SupplyController {
     @RequestMapping("/delete/{id}")
     public void deleteSupply(@PathVariable("id") String id) {
         supplyService.delete(id);
+    }
+
+    @RequestMapping("/income")
+    public double getTotalIncome() {
+        return supplyService.getTotalIncome();
+    }
+
+    @RequestMapping("income/{date}")
+    public double getIncomeOfDate(@PathVariable("date") String incomeDate) {
+        LocalDate date = LocalDate.parse(incomeDate);
+        return supplyService.getIncomeOfDate(date);
+    }
+
+    @RequestMapping("income/from/{firstDate}/to/{secondDate}")
+    public double getIncomeBetween(@PathVariable("firstDate") String firstDate, @PathVariable("secondDate") String secondDate) {
+        LocalDate date1 = LocalDate.parse(firstDate), date2 = LocalDate.parse(secondDate);
+        return supplyService.getIncomeBetween(date1, date2);
+    }
+
+    @RequestMapping("/find/{field}/{value}")
+    public List<Supply> findSupplies(@PathVariable("field") String field, @PathVariable("value") String value) {
+        List<Supply> result = null;
+        switch (field) {
+            case "supplier": result = supplyService.findBySupplier(value); break;
+            case "name": result = supplyService.findByPart(value); break;
+            case "amount": result = supplyService.findByAmount(Integer.parseInt(value)); break;
+            case "price": result = supplyService.findByDate(value); break;
+        }
+        return result;
     }
 }

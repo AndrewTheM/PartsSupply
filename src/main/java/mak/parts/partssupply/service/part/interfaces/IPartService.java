@@ -12,4 +12,9 @@ public interface IPartService {
     List<Part> getAll();
 
     Part getAt(int index);
+    List<Part> findByCode(String code);
+    List<Part> findByName(String name);
+    List<Part> findByType(String type);
+    List<Part> findByPrice(double price);
+    List<Part> findByAnnotation(String annotation);
 }

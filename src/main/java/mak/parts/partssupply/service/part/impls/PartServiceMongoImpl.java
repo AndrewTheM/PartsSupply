@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PartServiceMongoImpl implements IPartService {
@@ -65,5 +66,40 @@ public class PartServiceMongoImpl implements IPartService {
     @Override
     public Part getAt(int index) {
         return this.getAll().get(index);
+    }
+
+    @Override
+    public List<Part> findByCode(String code) {
+        return this.getAll().stream()
+                .filter(part -> part.getCode().contains(code))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Part> findByName(String name) {
+        return this.getAll().stream()
+                .filter(part -> part.getName().contains(name))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Part> findByType(String type) {
+        return this.getAll().stream()
+                .filter(part -> part.getType().contains(type))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Part> findByPrice(double price) {
+        return this.getAll().stream()
+                .filter(part -> part.getPrice() == price)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Part> findByAnnotation(String annotation) {
+        return this.getAll().stream()
+                .filter(part -> part.getAnnotation().contains(annotation))
+                .collect(Collectors.toList());
     }
 }

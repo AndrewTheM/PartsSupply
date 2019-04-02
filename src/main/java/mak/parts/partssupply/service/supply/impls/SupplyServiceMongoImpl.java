@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -70,5 +71,35 @@ public class SupplyServiceMongoImpl implements ISupplyService {
     @Override
     public List<Supply> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public double getTotalIncome() {
+        double income = 0;
+        for (Supply sup: this.getAll())
+            income += sup.getAmount() * sup.getPart().getPrice();
+        return income;
+    }
+
+    @Override
+    public double getIncomeOfDate(LocalDate date) {
+        double income = 0;
+        for (Supply sup: this.getAll())
+            if (sup.getDate().equals(date.toString()))
+                income += sup.getAmount() * sup.getPart().getPrice();
+        return income;
+    }
+
+    @Override
+    public double getIncomeBetween(LocalDate startDate, LocalDate endDate) {
+        double income = 0;
+        for (Supply sup: this.getAll()) {
+            CharSequence dateStr = sup.getDate();
+            LocalDate date = LocalDate.parse(dateStr);
+            if ((date.isAfter(startDate) || date.isEqual(startDate)) &&
+                    (date.isBefore(endDate) || date.isEqual(endDate)))
+                income += sup.getAmount() * sup.getPart().getPrice();
+        }
+        return income;
     }
 }

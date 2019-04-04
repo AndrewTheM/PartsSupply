@@ -92,9 +92,9 @@ public class SupplyController {
         List<Supply> result = null;
         switch (field) {
             case "supplier": result = supplyService.findBySupplier(value); break;
-            case "name": result = supplyService.findByPart(value); break;
+            case "part": result = supplyService.findByPart(value); break;
             case "amount": result = supplyService.findByAmount(Integer.parseInt(value)); break;
-            case "price": result = supplyService.findByDate(value); break;
+            case "date": result = supplyService.findByDate(value); break;
         }
         return result;
     }

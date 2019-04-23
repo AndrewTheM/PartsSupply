@@ -9,6 +9,7 @@ import java.util.Objects;
 @Entity
 public class Supply {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "supplierId")

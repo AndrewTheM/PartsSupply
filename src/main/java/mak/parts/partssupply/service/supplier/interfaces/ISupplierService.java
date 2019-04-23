@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface ISupplierService {
     Supplier create(Supplier supplier);
-    Supplier get(String id);
+    Supplier get(Integer id);
     Supplier update(Supplier supplier);
-    void delete(String id);
+    void delete(Integer id);
     List<Supplier> getAll();
 
     Supplier getAt(int index);

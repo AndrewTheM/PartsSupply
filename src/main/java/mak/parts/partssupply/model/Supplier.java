@@ -1,17 +1,16 @@
 package mak.parts.partssupply.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
+import javax.persistence.*;
 import java.util.Objects;
 
 // 01.03.2019       класс Поставщик
 // Developed by Andrey
 
-@Document
+@Entity
 public class Supplier {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String code;        // код поставщика
     private String name;        // название поставщика
     private String address;     // юридический адрес
@@ -27,7 +26,7 @@ public class Supplier {
         this.phone = phone;
     }
 
-    public Supplier(String id, String code, String name, String address, String phone) {
+    public Supplier(Integer id, String code, String name, String address, String phone) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -35,11 +34,11 @@ public class Supplier {
         this.phone = phone;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -91,7 +90,7 @@ public class Supplier {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Supplier supplier = (Supplier) o;
-        return getId() == supplier.getId();
+        return getId().intValue() == supplier.getId().intValue();
     }
 
     @Override

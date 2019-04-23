@@ -4,9 +4,9 @@ import mak.parts.partssupply.form.SupplyForm;
 import mak.parts.partssupply.model.Part;
 import mak.parts.partssupply.model.Supplier;
 import mak.parts.partssupply.model.Supply;
-import mak.parts.partssupply.service.part.impls.PartServiceMongoImpl;
-import mak.parts.partssupply.service.supplier.impls.SupplierServiceMongoImpl;
-import mak.parts.partssupply.service.supply.impls.SupplyServiceMongoImpl;
+import mak.parts.partssupply.service.part.impls.PartServiceMySQLImpl;
+import mak.parts.partssupply.service.supplier.impls.SupplierServiceMySQLImpl;
+import mak.parts.partssupply.service.supply.impls.SupplyServiceMySQLImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +19,13 @@ import java.util.List;
 public class SupplyController {
 
     @Autowired
-    private SupplyServiceMongoImpl supplyService;
+    private SupplyServiceMySQLImpl supplyService;
 
     @Autowired
-    private SupplierServiceMongoImpl supplierService;
+    private SupplierServiceMySQLImpl supplierService;
 
     @Autowired
-    private PartServiceMongoImpl partService;
+    private PartServiceMySQLImpl partService;
 
     @RequestMapping("/list")
     public List<Supply> getAllSupplies() {
@@ -33,7 +33,7 @@ public class SupplyController {
     }
 
     @RequestMapping("/create/{supplierId}/{partId}/{amount}/{date}")
-    public Supply createSupply(@PathVariable("supplierId") String supplierId, @PathVariable("partId") String partId,
+    public Supply createSupply(@PathVariable("supplierId") Integer supplierId, @PathVariable("partId") Integer partId,
                                @PathVariable("amount") int amount, @PathVariable("date") String date){
         Supplier supplier = supplierService.get(supplierId);
         Part part = partService.get(partId);
@@ -49,8 +49,8 @@ public class SupplyController {
     }
 
     @RequestMapping("/edit/{id}/{supplierId}/{partId}/{amount}/{date}")
-    public Supply editSupply(@PathVariable("id") String id, @PathVariable("supplierId") String supplierId,
-                             @PathVariable("partId") String partId, @PathVariable("amount") int amount,
+    public Supply editSupply(@PathVariable("id") Integer id, @PathVariable("supplierId") Integer supplierId,
+                             @PathVariable("partId") Integer partId, @PathVariable("amount") int amount,
                              @PathVariable("date") String date) {
         Supplier supplier = supplierService.get(supplierId);
         Part part = partService.get(partId);
@@ -66,7 +66,7 @@ public class SupplyController {
     }
 
     @RequestMapping("/delete/{id}")
-    public void deleteSupply(@PathVariable("id") String id) {
+    public void deleteSupply(@PathVariable("id") Integer id) {
         supplyService.delete(id);
     }
 

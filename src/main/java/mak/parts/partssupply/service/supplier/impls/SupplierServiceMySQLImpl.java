@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class SupplierServiceMongoImpl implements ISupplierService {
+public class SupplierServiceMySQLImpl implements ISupplierService {
 
     @Autowired
     private SupplierRepository repository;
@@ -39,7 +39,7 @@ public class SupplierServiceMongoImpl implements ISupplierService {
     }
 
     @Override
-    public Supplier get(String id) {
+    public Supplier get(Integer id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -49,7 +49,7 @@ public class SupplierServiceMongoImpl implements ISupplierService {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Integer id) {
         repository.deleteById(id);
     }
 

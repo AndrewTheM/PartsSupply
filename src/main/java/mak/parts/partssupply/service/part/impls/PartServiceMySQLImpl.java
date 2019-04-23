@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PartServiceMongoImpl implements IPartService {
+public class PartServiceMySQLImpl implements IPartService {
 
     @Autowired
     PartRepository repository;
@@ -44,7 +44,7 @@ public class PartServiceMongoImpl implements IPartService {
     }
 
     @Override
-    public Part get(String id) {
+    public Part get(Integer id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -54,7 +54,7 @@ public class PartServiceMongoImpl implements IPartService {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Integer id) {
         repository.deleteById(id);
     }
 

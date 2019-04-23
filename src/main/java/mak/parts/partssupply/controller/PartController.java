@@ -1,7 +1,7 @@
 package mak.parts.partssupply.controller;
 
 import mak.parts.partssupply.model.Part;
-import mak.parts.partssupply.service.part.impls.PartServiceMongoImpl;
+import mak.parts.partssupply.service.part.impls.PartServiceMySQLImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.List;
 public class PartController {
 
     @Autowired
-    private PartServiceMongoImpl partService;
+    private PartServiceMySQLImpl partService;
 
     @RequestMapping("/list")
     public List<Part> getAllParts() {
@@ -34,9 +34,9 @@ public class PartController {
     }
 
     @RequestMapping("/edit/{id}/{code}/{name}/{type}/{price}/{annotation}")
-    public Part editPart(@PathVariable("id") String id, @PathVariable("code") String code,
-                           @PathVariable("name") String name, @PathVariable("type") String type,
-                           @PathVariable("price") double price, @PathVariable("annotation") String annotation) {
+    public Part editPart(@PathVariable("id") Integer id, @PathVariable("code") String code,
+                         @PathVariable("name") String name, @PathVariable("type") String type,
+                         @PathVariable("price") double price, @PathVariable("annotation") String annotation) {
         return partService.update(new Part(id, code, name, type, price, annotation));
     }
 
@@ -46,7 +46,7 @@ public class PartController {
     }
 
     @RequestMapping("/delete/{id}")
-    public void deletePart(Model model, @PathVariable("id") String id) {
+    public void deletePart(Model model, @PathVariable("id") Integer id) {
         partService.delete(id);
     }
 

@@ -1,33 +1,33 @@
 package mak.parts.partssupply.form;
 
 public class SupplyForm {
-    private String id;
-    private String supplier;
-    private String part;
+    private Integer id;
+    private Integer supplier;
+    private Integer part;
     private int amount;
     private String date;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getSupplier() {
+    public Integer getSupplier() {
         return supplier;
     }
 
-    public void setSupplier(String supplier) {
+    public void setSupplier(Integer supplier) {
         this.supplier = supplier;
     }
 
-    public String getPart() {
+    public Integer getPart() {
         return part;
     }
 
-    public void setPart(String part) {
+    public void setPart(Integer part) {
         this.part = part;
     }
 

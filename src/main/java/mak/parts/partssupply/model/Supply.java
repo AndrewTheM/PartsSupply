@@ -1,18 +1,20 @@
 package mak.parts.partssupply.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
+import javax.persistence.*;
 import java.util.Objects;
 
 // 01.03.2019       класс Поставка
 // Developed by Andrey
 
-@Document
+@Entity
 public class Supply {
     @Id
-    private String id;
+    private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "supplierId")
     private Supplier supplier;      // поставщик
+    @ManyToOne
+    @JoinColumn(name = "partId")
     private Part part;              // поставленная деталь
     private int amount;             // количество деталей
     private String date;         // дата поставки
@@ -27,7 +29,7 @@ public class Supply {
         this.date = date;
     }
 
-    public Supply(String id, Supplier supplier, Part part, int amount, String date) {
+    public Supply(Integer id, Supplier supplier, Part part, int amount, String date) {
         this.id = id;
         this.supplier = supplier;
         this.part = part;
@@ -35,11 +37,11 @@ public class Supply {
         this.date = date;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -91,7 +93,7 @@ public class Supply {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Supply supply = (Supply) o;
-        return getId() == supply.getId();
+        return getId().intValue() == supply.getId().intValue();
     }
 
     @Override

@@ -2,8 +2,8 @@ package mak.parts.partssupply.service.supply.impls;
 
 import mak.parts.partssupply.model.Supply;
 import mak.parts.partssupply.repository.SupplyRepository;
-import mak.parts.partssupply.service.part.impls.PartServiceMongoImpl;
-import mak.parts.partssupply.service.supplier.impls.SupplierServiceMongoImpl;
+import mak.parts.partssupply.service.part.impls.PartServiceMySQLImpl;
+import mak.parts.partssupply.service.supplier.impls.SupplierServiceMySQLImpl;
 import mak.parts.partssupply.service.supply.interfaces.ISupplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,16 +16,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class SupplyServiceMongoImpl implements ISupplyService {
+public class SupplyServiceMySQLImpl implements ISupplyService {
 
     @Autowired
     private SupplyRepository repository;
 
     @Autowired
-    private SupplierServiceMongoImpl supplierService;
+    private SupplierServiceMySQLImpl supplierService;
 
     @Autowired
-    private PartServiceMongoImpl partService;
+    private PartServiceMySQLImpl partService;
 
     @PostConstruct
     private void init() {
@@ -53,7 +53,7 @@ public class SupplyServiceMongoImpl implements ISupplyService {
     }
 
     @Override
-    public Supply get(String id) {
+    public Supply get(Integer id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -63,7 +63,7 @@ public class SupplyServiceMongoImpl implements ISupplyService {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Integer id) {
         repository.deleteById(id);
     }
 

@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface ISupplyService {
     Supply create(Supply supply);
-    Supply get(String id);
+    Supply get(Integer id);
     Supply update(Supply supply);
-    void delete(String id);
+    void delete(Integer id);
     List<Supply> getAll();
 
     double getTotalIncome();

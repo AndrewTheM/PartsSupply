@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface IPartService {
     Part create(Part part);
-    Part get(String id);
+    Part get(Integer id);
     Part update(Part part);
-    void delete(String id);
+    void delete(Integer id);
     List<Part> getAll();
 
     Part getAt(int index);

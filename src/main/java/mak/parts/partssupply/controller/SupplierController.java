@@ -1,7 +1,7 @@
 package mak.parts.partssupply.controller;
 
 import mak.parts.partssupply.model.Supplier;
-import mak.parts.partssupply.service.supplier.impls.SupplierServiceMongoImpl;
+import mak.parts.partssupply.service.supplier.impls.SupplierServiceMySQLImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class SupplierController {
 
     @Autowired
-    private SupplierServiceMongoImpl supplierService;
+    private SupplierServiceMySQLImpl supplierService;
 
     @RequestMapping("/list")
     public List<Supplier> getAllSuppliers() {
@@ -32,7 +32,7 @@ public class SupplierController {
     }
 
     @RequestMapping("/edit/{id}/{code}/{name}/{address}/{phone}")
-    public Supplier editSupplier(@PathVariable("id") String id, @PathVariable("code") String code,
+    public Supplier editSupplier(@PathVariable("id") Integer id, @PathVariable("code") String code,
                                  @PathVariable("name") String name, @PathVariable("address") String address,
                                  @PathVariable("phone") String phone) {
         return supplierService.update(new Supplier(id, code, name, address, phone));
@@ -44,7 +44,7 @@ public class SupplierController {
     }
 
     @RequestMapping("/delete/{id}")
-    public void deleteSupplier(@PathVariable("id") String id) {
+    public void deleteSupplier(@PathVariable("id") Integer id) {
         supplierService.delete(id);
     }
 

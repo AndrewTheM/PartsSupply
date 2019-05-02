@@ -17,15 +17,15 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("user")
                 .password("{noop}user")
-                .roles("USER")
+                .roles("ROLE_USER")
                 .and()
                 .withUser("admin")
                 .password("{noop}admin")
-                .roles("USER", "ADMIN")
+                .roles("ROLE_ADMIN")
                 .and()
                 .withUser("superadmin")
                 .password("{noop}adminsuper")
-                .roles("ADMIN");
+                .roles("ROLE_USER", "ROLE_ADMIN");
     }
 
     @Override

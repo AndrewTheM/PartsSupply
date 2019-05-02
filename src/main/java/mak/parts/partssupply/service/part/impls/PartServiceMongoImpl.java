@@ -33,7 +33,7 @@ public class PartServiceMongoImpl implements IPartService {
                         new Part("4180778939", "Стекло заднее", "CV-0372", 500, "АКЦИЯ! При покупке - стекло переднее со скидкой 50%!")
                 )
         );
-        if (repository.findAll().size() == 0 || !repository.findAll().get(0).getCode().equals(parts.get(0).getCode()))
+        if (repository.count() < parts.size())
             repository.saveAll(parts);
     }
 

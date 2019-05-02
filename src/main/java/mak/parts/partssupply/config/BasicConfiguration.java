@@ -17,22 +17,18 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("user")
                 .password("{noop}user")
-                .roles("ROLE_USER")
+                .roles("USER")
                 .and()
                 .withUser("admin")
                 .password("{noop}admin")
-                .roles("ROLE_ADMIN")
-                .and()
-                .withUser("superadmin")
-                .password("{noop}adminsuper")
-                .roles("ROLE_USER", "ROLE_ADMIN");
+                .roles("ADMIN");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .anyRequest()
+                .antMatchers("/**")
                 .authenticated()
                 .and()
                 .httpBasic();

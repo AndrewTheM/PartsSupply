@@ -29,7 +29,7 @@ public class SupplierServiceMongoImpl implements ISupplierService {
                     new Supplier("341", "4Auto", "Черновцы, ул. Главная, 223", "+380952345785")
                 )
         );
-        if (repository.findAll().size() == 0 || !repository.findAll().get(0).getCode().equals(suppliers.get(0).getCode()))
+        if (repository.count() < suppliers.size())
             repository.saveAll(suppliers);
     }
 

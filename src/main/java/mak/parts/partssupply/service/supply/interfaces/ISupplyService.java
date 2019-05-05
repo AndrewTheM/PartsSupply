@@ -12,9 +12,9 @@ public interface ISupplyService {
     void delete(String id);
     List<Supply> getAll();
 
-    double getTotalIncome();
-    double getIncomeOfDate(LocalDate date);
-    double getIncomeBetween(LocalDate startDate, LocalDate endDate);
+    double getTotalExpense();
+    double getExpenseOfDate(LocalDate date);
+    double getExpenseBetween(LocalDate startDate, LocalDate endDate);
 
     List<Supply> findBySupplier(String supplierName);
     List<Supply> findByPart(String partName);

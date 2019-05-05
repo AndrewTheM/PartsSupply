@@ -43,7 +43,7 @@ public class SupplyServiceMongoImpl implements ISupplyService {
                     new Supply(supplierService.getAt(2), partService.getAt(5), 1, "2018-04-20")
                 )
         );
-        if (repository.findAll().size() == 0 || !repository.findAll().get(0).getDate().equals(supplies.get(0).getDate()))
+        if (repository.count() < supplies.size())
             repository.saveAll(supplies);
     }
 
@@ -73,33 +73,32 @@ public class SupplyServiceMongoImpl implements ISupplyService {
     }
 
     @Override
-    public double getTotalIncome() {
-        double income = 0;
+    public double getTotalExpense() {
+        double expense = 0;
         for (Supply sup: this.getAll())
-            income += sup.getAmount() * sup.getPart().getPrice();
-        return income;
+            expense += sup.getAmount() * sup.getPart().getPrice();
+        return expense;
     }
 
     @Override
-    public double getIncomeOfDate(LocalDate date) {
-        double income = 0;
+    public double getExpenseOfDate(LocalDate date) {
+        double expense = 0;
         for (Supply sup: this.getAll())
             if (sup.getDate().equals(date.toString()))
-                income += sup.getAmount() * sup.getPart().getPrice();
-        return income;
+                expense += sup.getAmount() * sup.getPart().getPrice();
+        return expense;
     }
 
     @Override
-    public double getIncomeBetween(LocalDate startDate, LocalDate endDate) {
-        double income = 0;
+    public double getExpenseBetween(LocalDate startDate, LocalDate endDate) {
+        double expense = 0;
         for (Supply sup: this.getAll()) {
-            CharSequence dateStr = sup.getDate();
-            LocalDate date = LocalDate.parse(dateStr);
+            LocalDate date = LocalDate.parse(sup.getDate());
             if ((date.isAfter(startDate) || date.isEqual(startDate)) &&
                     (date.isBefore(endDate) || date.isEqual(endDate)))
-                income += sup.getAmount() * sup.getPart().getPrice();
+                expense += sup.getAmount() * sup.getPart().getPrice();
         }
-        return income;
+        return expense;
     }
 
     @Override

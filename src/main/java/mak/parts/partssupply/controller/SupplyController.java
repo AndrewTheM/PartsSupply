@@ -70,21 +70,21 @@ public class SupplyController {
         supplyService.delete(id);
     }
 
-    @RequestMapping("/income")
-    public double getTotalIncome() {
-        return supplyService.getTotalIncome();
+    @RequestMapping("/expense")
+    public double getTotalExpense() {
+        return supplyService.getTotalExpense();
     }
 
-    @RequestMapping("income/{date}")
-    public double getIncomeOfDate(@PathVariable("date") String incomeDate) {
-        LocalDate date = LocalDate.parse(incomeDate);
-        return supplyService.getIncomeOfDate(date);
+    @RequestMapping("expense/{date}")
+    public double getExpenseOfDate(@PathVariable("date") String expenseDate) {
+        LocalDate date = LocalDate.parse(expenseDate);
+        return supplyService.getExpenseOfDate(date);
     }
 
-    @RequestMapping("income/from/{firstDate}/to/{secondDate}")
+    @RequestMapping("expense/from/{firstDate}/to/{secondDate}")
     public double getIncomeBetween(@PathVariable("firstDate") String firstDate, @PathVariable("secondDate") String secondDate) {
         LocalDate date1 = LocalDate.parse(firstDate), date2 = LocalDate.parse(secondDate);
-        return supplyService.getIncomeBetween(date1, date2);
+        return supplyService.getExpenseBetween(date1, date2);
     }
 
     @RequestMapping("/find/{field}/{value}")
